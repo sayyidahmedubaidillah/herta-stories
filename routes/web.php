@@ -4,10 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SongRequestController;
 
-//Route::get('/', [PublicController::class, 'home']);
-Route::get('/', function () {
-    return 'Laravel OK';
-});
+Route::get('/', [PublicController::class, 'home']);
 
 ///debug percobaan
     Route::get('/debug', function () {
