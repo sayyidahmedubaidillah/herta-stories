@@ -22,4 +22,7 @@ try {
     echo "Error: " . $e->getMessage() . "<br>";
     echo "File: " . $e->getFile() . "<br>";
     echo "Line: " . $e->getLine() . "<br>";
+    echo "Previous: " . ($e->getPrevious() ? $e->getPrevious()->getMessage() : 'none') . "<br>";
+    echo "Previous file: " . ($e->getPrevious() ? $e->getPrevious()->getFile() : 'none') . "<br>";
+    echo "Previous line: " . ($e->getPrevious() ? $e->getPrevious()->getLine() : 'none') . "<br>";
 }
