@@ -17,6 +17,13 @@ Route::get('/queue', [SongRequestController::class, 'queue'])
 Route::get('/display', [SongRequestController::class, 'display'])
     ->name('display');
 
+    Route::get('/my-request', [SongRequestController::class, 'myRequestForm'])
+    ->name('my-request.form');
+Route::post('/my-request', [SongRequestController::class, 'myRequestLookup'])
+    ->name('my-request.lookup');
+Route::delete('/my-request/{songRequest:queue_code}', [SongRequestController::class, 'myRequestDelete'])
+    ->name('my-request.delete');
+
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

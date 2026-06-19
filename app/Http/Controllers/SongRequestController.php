@@ -51,4 +51,39 @@ class SongRequestController extends Controller
 
     return view('display', compact('nowPlaying', 'upNext'));
     }
+    public function myRequestForm()
+{
+    return view('my-request');
+}
+
+public function myRequestLookup(Request $request)
+{
+    $request->validate([
+        'queue_code' => 'required|string',
+    ]);
+
+    $songRequest = SongRequest::where('queue_code', strtoupper(trim($request->queue_code)))->first();
+
+    if (!$songRequest) {
+        return back()->withErrors([
+            'queue_code' => 'Kode tidak ditemukan. Periksa kembali kode kamu.',
+        ]);
+    }
+
+    return view('my-request', compact('songRequest'));
+}
+
+public function myRequestDelete(SongRequest $songRequest)
+{
+    if (in_array($songRequest->status, ['playing', 'played'])) {
+        return back()->withErrors([
+            'queue_code' => 'Request ini sudah diproses dan tidak bisa dihapus.',
+        ]);
+    }
+
+    $songRequest->delete();
+
+    return redirect()->route('my-request.form')
+        ->with('success', 'Request kamu berhasil dihapus.');
+}
 }
