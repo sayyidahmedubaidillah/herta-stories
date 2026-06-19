@@ -12,8 +12,10 @@ $app = require __DIR__ . '/../bootstrap/app.php';
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-echo "Kernel OK<br>";
-
 $request = Illuminate\Http\Request::capture();
 
-echo "Request OK<br>";
+$response = $kernel->handle($request);
+
+echo "Response OK<br>";
+
+$response->send();
