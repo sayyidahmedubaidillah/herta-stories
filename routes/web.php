@@ -41,3 +41,8 @@ Route::get('/php-version', function () {
         'php_version' => PHP_VERSION,
     ];
 });
+
+///TEST ROOT 
+Route::get('/', function () {
+    return 'ROOT WORKS';
+});
