@@ -6,6 +6,8 @@ use App\Http\Controllers\SongRequestController;
 
 Route::get('/', [PublicController::class, 'home']);
 
+
+
 ///debug percobaan
     Route::get('/debug', function () {
     return 'debug-ok';
@@ -31,4 +33,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/requests', [AdminController::class, 'requests'])->name('admin.requests');
     Route::patch('/requests/{songRequest}/status', [AdminController::class, 'updateStatus'])->name('admin.requests.updateStatus');
+});
+
+///cek php
+Route::get('/php-version', function () {
+    return [
+        'php_version' => PHP_VERSION,
+    ];
 });
