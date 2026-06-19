@@ -8,8 +8,12 @@ define('LARAVEL_START', microtime(true));
 
 require __DIR__ . '/../vendor/autoload.php';
 
-echo "Autoload OK<br>";
-
 $app = require __DIR__ . '/../bootstrap/app.php';
 
-echo "App OK<br>";
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+echo "Kernel OK<br>";
+
+$request = Illuminate\Http\Request::capture();
+
+echo "Request OK<br>";
