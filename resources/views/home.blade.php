@@ -10,7 +10,7 @@
 
     <h1 class="font-display text-4xl text-cream mb-3">Herta Stories</h1>
     <p class="text-cream/60 text-sm max-w-sm mb-10">
-        Setiap lagu punya cerita. Titipkan lagumu, kami putarkan sambil kamu menikmati secangkir kopi.
+        every song, tells a story.
     </p>
 
 
