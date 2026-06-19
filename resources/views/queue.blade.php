@@ -12,8 +12,6 @@
     </p>
 </div>
 
-
-
 @if ($queue->isEmpty())
     <div class="bg-[#1F130D] border border-caramel/20 rounded-xl p-8 text-center">
         <p class="text-cream/50">Belum ada antrian saat ini.</p>
@@ -29,9 +27,6 @@
                     <p class="font-display text-cream text-lg">{{ $item->song_title }}</p>
                     <p class="text-cream/60 text-sm">{{ $item->artist_name }}</p>
                     <p class="text-cream/40 text-xs mt-1">Dari: {{ $item->requester_name }} · {{ ucfirst(str_replace('_', ' ', $item->mood)) }}</p>
-                </div>
-                <div class="font-mono text-xs text-cream/50 bg-espresso px-2 py-1 rounded">
-                    {{ $item->queue_code }}
                 </div>
             </div>
         @endforeach

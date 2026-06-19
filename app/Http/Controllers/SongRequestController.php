@@ -27,7 +27,8 @@ class SongRequestController extends Controller
         $songRequest = SongRequest::create($validated);
 
         return redirect()->route('request.create')
-            ->with('success', 'Request berhasil dikirim! Kode antrian kamu: ' . $songRequest->queue_code);
+            ->with('success', 'Request berhasil dikirim!')
+            ->with('queue_code', $songRequest->queue_code);
     }
 
     public function queue()
@@ -38,52 +39,54 @@ class SongRequestController extends Controller
 
         return view('queue', compact('queue'));
     }
+
     public function display()
-    {  
-    $nowPlaying = SongRequest::where('status', 'playing')
-        ->latest()
-        ->first();
+    {
+        $nowPlaying = SongRequest::where('status', 'playing')
+            ->latest()
+            ->first();
 
-    $upNext = SongRequest::where('status', 'queued')
-        ->orderBy('created_at', 'asc')
-        ->take(5)
-        ->get();
+        $upNext = SongRequest::where('status', 'queued')
+            ->orderBy('created_at', 'asc')
+            ->take(5)
+            ->get();
 
-    return view('display', compact('nowPlaying', 'upNext'));
+        return view('display', compact('nowPlaying', 'upNext'));
     }
+
     public function myRequestForm()
-{
-    return view('my-request');
-}
-
-public function myRequestLookup(Request $request)
-{
-    $request->validate([
-        'queue_code' => 'required|string',
-    ]);
-
-    $songRequest = SongRequest::where('queue_code', strtoupper(trim($request->queue_code)))->first();
-
-    if (!$songRequest) {
-        return back()->withErrors([
-            'queue_code' => 'Kode tidak ditemukan. Periksa kembali kode kamu.',
-        ]);
+    {
+        return view('my-request');
     }
 
-    return view('my-request', compact('songRequest'));
-}
-
-public function myRequestDelete(SongRequest $songRequest)
-{
-    if (in_array($songRequest->status, ['playing', 'played'])) {
-        return back()->withErrors([
-            'queue_code' => 'Request ini sudah diproses dan tidak bisa dihapus.',
+    public function myRequestLookup(Request $request)
+    {
+        $request->validate([
+            'queue_code' => 'required|string',
         ]);
+
+        $songRequest = SongRequest::where('queue_code', strtoupper(trim($request->queue_code)))->first();
+
+        if (!$songRequest) {
+            return back()->withErrors([
+                'queue_code' => 'Kode tidak ditemukan. Periksa kembali kode kamu.',
+            ]);
+        }
+
+        return view('my-request', compact('songRequest'));
     }
 
-    $songRequest->delete();
+    public function myRequestDelete(SongRequest $songRequest)
+    {
+        if (in_array($songRequest->status, ['playing', 'played'])) {
+            return back()->withErrors([
+                'queue_code' => 'Request ini sudah diproses dan tidak bisa dihapus.',
+            ]);
+        }
 
-    return redirect()->route('my-request.form')
-        ->with('success', 'Request kamu berhasil dihapus.');
-}
+        $songRequest->delete();
+
+        return redirect()->route('my-request.form')
+            ->with('success', 'Request kamu berhasil dihapus.');
+    }
 }

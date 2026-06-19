@@ -3,16 +3,33 @@
 @section('title', 'Request Song')
 
 @section('content')
+
 <div class="mb-8 text-center">
     @include('partials.steam')
     <h1 class="font-display text-3xl text-cream mb-2">Titip Lagu, Titip Cerita</h1>
     <p class="text-cream/60 text-sm">Pilih lagu, tulis pesan, biar kami putarkan untukmu</p>
 </div>
 
-
 @if (session('success'))
-    <div class="bg-sage/20 border border-sage text-cream px-4 py-3 rounded-lg mb-6 text-sm">
-        {{ session('success') }}
+    <div class="bg-sage/20 border border-sage rounded-xl p-5 mb-6 text-center">
+        <p class="text-cream text-sm mb-3">{{ session('success') }}</p>
+
+        <p class="font-mono text-2xl text-caramel tracking-wider mb-2" id="queueCode">
+            {{ session('queue_code') }}
+        </p>
+
+        <button
+            type="button"
+            onclick="copyQueueCode()"
+            class="text-xs text-cream/70 border border-caramel/40 rounded-lg px-3 py-1.5 hover:border-caramel transition"
+            id="copyBtn"
+        >
+            📋 Copy Kode
+        </button>
+
+        <p class="text-brick text-xs mt-3">
+            ⚠️ Simpan kode ini, kamu butuh buat cek/hapus request nanti!
+        </p>
     </div>
 @endif
 
@@ -75,5 +92,19 @@
     </button>
 
 </form>
+
+@push('scripts')
+<script>
+function copyQueueCode() {
+    const code = document.getElementById('queueCode').innerText.trim();
+    navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const original = btn.innerText;
+        btn.innerText = '✅ Tersalin!';
+        setTimeout(() => btn.innerText = original, 2000);
+    });
+}
+</script>
+@endpush
 
 @endsection
