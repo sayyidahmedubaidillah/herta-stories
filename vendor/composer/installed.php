@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'a9e2c2f98fc48c96fdcd8762cf1fcc1d64812a9c',
+        'reference' => 'f898580baba6c5550c7b9c3360049544d3994157',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -93,15 +93,6 @@
             'install_path' => __DIR__ . '/../fakerphp/faker',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'filp/whoops' => array(
-            'pretty_version' => '2.18.4',
-            'version' => '2.18.4.0',
-            'reference' => 'd2102955e48b9fd9ab24280a7ad12ed552752c4d',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../filp/whoops',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'fruitcake/php-cors' => array(
             'pretty_version' => 'v1.4.0',
@@ -400,7 +391,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'a9e2c2f98fc48c96fdcd8762cf1fcc1d64812a9c',
+            'reference' => 'f898580baba6c5550c7b9c3360049544d3994157',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
