@@ -4,19 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SongRequestController;
 
-//Route::get('/', [PublicController::class, 'home']);
+Route::get('/', [PublicController::class, 'home']);
 Route::get('/', function () {
     return 'ROOT OK';
 });
 
-///debug test
-Route::get('/debug', function () {
-    return [
-        'php' => PHP_VERSION,
-        'laravel' => app()->version(),
-        'env' => app()->environment(),
-    ];
-});
+
 
 
 ///debug percobaan
