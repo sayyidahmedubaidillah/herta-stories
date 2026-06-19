@@ -9,6 +9,14 @@ Route::get('/', function () {
     return 'ROOT OK';
 });
 
+///debug test
+Route::get('/debug', function () {
+    return [
+        'php' => PHP_VERSION,
+        'laravel' => app()->version(),
+        'env' => app()->environment(),
+    ];
+});
 
 
 ///debug percobaan
