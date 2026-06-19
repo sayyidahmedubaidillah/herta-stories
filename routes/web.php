@@ -9,6 +9,10 @@ Route::get('/', function () {
     return 'Laravel OK';
 });
 
+///debug percobaan
+    Route::get('/debug', function () {
+    return 'debug-ok';
+});
 Route::get('/request', [SongRequestController::class, 'create'])
     ->name('request.create');
 
