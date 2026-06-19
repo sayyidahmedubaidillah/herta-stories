@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SongRequestController;
 
-Route::get('/', [PublicController::class, 'home']);
+//Route::get('/', [PublicController::class, 'home']);
+Route::get('/', function () {
+    return 'ROOT OK';
+});
 
 
 
